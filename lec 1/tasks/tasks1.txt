@@ -1,0 +1,4 @@
+                  create JSP FILR and on file do
+* define 2 variable id name with any values 
+* defune function with input id and name and return concatination with id and name
+* call function and print it on jsp file

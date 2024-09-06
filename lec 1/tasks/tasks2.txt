@@ -1,0 +1,13 @@
+                  create 2 JSP FILR and on file do
+* in first file create form with input and method type post
+fullName input text , 
+password input text , 
+age  input text , 
+address raduo button with values (cairo, alex , menofia),
+address select input with values (cairo, alex , menofia)
+
+* in second file 
+
+receive all inputs and print there on file
+
+
