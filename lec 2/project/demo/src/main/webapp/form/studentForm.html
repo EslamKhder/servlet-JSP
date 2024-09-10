@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="printDataForm.jsp" method="get">
+		first name : <input type="text" name="f_name" />
+		<br>
+		<br>
+		last name : <input type="text" name="l_name">
+		<br>
+		<br>
+		
+		password : <input type="password" name="pass">
+		<br>
+		<br>
+		
+		favorite Programming with radio : <br><br>
+			<input type="radio" name="favProgramming" value="java_PR"> java
+			<input type="radio" name="favProgramming" value="C++_PR"> C++
+			<input type="radio" name="favProgramming" value="c#_PR"> c#
+			<input type="radio" name="favProgramming" value="php_PR"> php
+		<br>
+		<br>
+		select favorite Programming
+		<select name="favPr">
+			<option value="java_P">java</option>
+			<option value="C++_P">C++</option>
+			<option value="c#_P">c#</option>
+			<option value="php_P">php</option>
+		</select>
+		
+		<br>
+		<br>
+		
+		favorite Programming with checkbox : <br><br>
+			<input type="checkbox" name="favProgrammingWithCheckbox" value="java"> java
+			<input type="checkbox" name="favProgrammingWithCheckbox" value="C++"> C++
+			<input type="checkbox" name="favProgrammingWithCheckbox" value="c#"> c#
+			<input type="checkbox" name="favProgrammingWithCheckbox" value="php"> php
+		<br>
+		<br>
+		<input type="submit" value="send data">
+	</form>
+</body>
+</html>

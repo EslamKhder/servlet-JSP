@@ -1,0 +1,6 @@
+create HTML file with inputs 
+
+1 - full name
+2 - age
+
+create servlet to get this parameter and show it on browser

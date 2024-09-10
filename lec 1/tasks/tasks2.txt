@@ -3,7 +3,7 @@
 fullName input text , 
 password input text , 
 age  input text , 
-address raduo button with values (cairo, alex , menofia),
+address radio button with values (cairo, alex , menofia),
 address select input with values (cairo, alex , menofia)
 
 * in second file 

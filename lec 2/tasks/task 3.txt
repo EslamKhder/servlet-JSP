@@ -1,0 +1,11 @@
+3 - create Html file with name start include one input 
+
+- input text to let user write fav place
+
+i need to save this data (fav place) For a month
+
+
+display this input on final page jsp called homepage
+
+
+not use cookie

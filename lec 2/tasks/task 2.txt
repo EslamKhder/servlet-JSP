@@ -1,0 +1,7 @@
+1 - create jsp file with input 
+- order food user can write any food needed
+
+i need to save all order during the session and display it in new jsp file with name allorders
+
+
+not apply with session 
