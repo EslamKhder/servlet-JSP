@@ -8,4 +8,4 @@ i need to save this data (fav place) For a month
 display this input on final page jsp called homepage
 
 
-not use cookie
+note use cookie
