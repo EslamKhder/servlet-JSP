@@ -4,4 +4,6 @@
 i need to save all order during the session and display it in new jsp file with name allorders
 
 
-not apply with session 
+note
+
+apply with session 
