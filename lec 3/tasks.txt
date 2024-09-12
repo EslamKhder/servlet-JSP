@@ -1,0 +1,6 @@
+add to file ItemUtilService 
+
+- function to get items where id in 1,2
+- function to get items where name contain i char
+- function to get items that salary > 50 and < 20
+- function to save List of items 
