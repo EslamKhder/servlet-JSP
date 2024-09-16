@@ -18,6 +18,13 @@ public class Item {
 		this.price = price;
 		this.totalNumber = totalNumber;
 	}
+	
+	public Item(int id, String name, double price, int totalNumber) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.totalNumber = totalNumber;
+	}
 
 	public int getId() {
 		return id;

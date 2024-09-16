@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html>
 <head>
   <meta charset="UTF-8">
   <title>ADD Item</title>
@@ -13,24 +13,32 @@
   <div class="text">
     Add Item
   </div>
-  <form action="#">
+  <form action="ItemController">
     <div class="form-row">
       <div class="input-data">
-        <input type="text" required>
+        <input type="text" name="nameItem" required>
         <div class="underline"></div>
         <label>Name</label>
       </div>
       <div class="input-data">
-        <input type="text" required>
+        <input type="text" name="price" required>
         <div class="underline"></div>
         <label>PRICE</label>
       </div>
     </div>
     <div class="form-row">
       <div class="input-data">
-        <input type="text" required>
+        <input type="text" name="totalNumber" required>
         <div class="underline"></div>
         <label>TOTAL_NUMBER</label>
+      </div>
+
+    </div>
+    
+    <div class="form-row">
+      <div class="input-data">
+        <input type="hidden" name="action" value="ADD">
+        <div class="underline"></div>
       </div>
 
     </div>
@@ -38,7 +46,7 @@
   </form>
 
   <p class="back">
-    <a href="" >Back To Items</a>
+    <a href="ItemController" >Back To Items</a>
   </p>
 </div>
 <!-- partial -->

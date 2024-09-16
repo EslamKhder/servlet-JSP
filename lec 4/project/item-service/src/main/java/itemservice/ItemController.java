@@ -21,13 +21,15 @@ public class ItemController extends HttpServlet {
 	
 	@Resource(name = "jdbc/web_item")
 	private DataSource dataSource;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ItemController() {
-        
-    }
+    
+	private ItemUtilService itemUtilService;
+
+    
+	@Override
+	public void init() throws ServletException {
+		itemUtilService = new ItemUtilService(dataSource);
+	}
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,16 +50,16 @@ public class ItemController extends HttpServlet {
 				loadItems(request, response);
 				break;
 			case "LOAD_ITEM":
-				
+				loadItem(request, response);
 				break;
 			case "DELETE":
-				
+				deleteItem(request, response);
 				break;
 			case "UPDATE":
-				
+				updateItem(request, response);
 				break;
 			default:
-				
+				loadItems(request, response);
 		}
 	}
 	
@@ -65,17 +67,15 @@ public class ItemController extends HttpServlet {
 	void addItem(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			ItemUtilService itemUtilService = new ItemUtilService(dataSource);
-			String name = (String) request.getAttribute("name");
-			double price = (double) request.getAttribute("price");
-			int totalNumber = (int) request.getAttribute("totalNumber");
+			String name = request.getParameter("nameItem");
+			double price = Double.parseDouble(request.getParameter("price"));
+			int totalNumber = Integer.parseInt(request.getParameter("totalNumber"));
 			
 			Item item = new Item(name, price, totalNumber);
 			itemUtilService.saveItem(item);
 			
+			loadItems(request, response);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/show-items.jsp");
-			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,13 +85,13 @@ public class ItemController extends HttpServlet {
 	
 	void loadItems(HttpServletRequest request, HttpServletResponse response) {
 			
-		try {
-			ItemUtilService itemUtilService = new ItemUtilService(dataSource);
-	
+		try {	
 			List<Item> items = itemUtilService.getAllItem();
 			
-			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/show-items.jsp");
-			dispatcher.forward(request, response);*/
+			request.setAttribute("allItems", items);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/show-items.jsp");
+			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,19 +103,51 @@ public class ItemController extends HttpServlet {
 	void loadItem(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			ItemUtilService itemUtilService = new ItemUtilService(dataSource);
-			int id = (int) request.getAttribute("id");
+			int id = Integer.parseInt(request.getParameter("id"));
 		
 			Item item = itemUtilService.findItemById(id);
 			
+			request.setAttribute("existedItem", item);
 			
-			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/show-items.jsp");
-			dispatcher.forward(request, response);*/
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/update-item.jsp");
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	void deleteItem(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+		
+			itemUtilService.deleteItem(id);
+			
+			loadItems(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	void updateItem(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String name = request.getParameter("nameItem");
+			double price = Double.parseDouble(request.getParameter("price"));
+			int totalNumber = Integer.parseInt(request.getParameter("totalNumber"));
+			
+			Item item = new Item(id, name, price, totalNumber);
+			itemUtilService.updateItem(item);
+			
+			
+			loadItems(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
 }

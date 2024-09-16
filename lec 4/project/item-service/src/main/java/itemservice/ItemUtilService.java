@@ -26,7 +26,7 @@ public class ItemUtilService {
 			connection = dataSource.getConnection();
 			statement = connection.createStatement();
 			
-			String sql = "select * from item";
+			String sql = "select * from item order by id";
 			ResultSet resultSet = statement.executeQuery(sql);
 			
 			List<Item> items = new ArrayList();
@@ -35,7 +35,7 @@ public class ItemUtilService {
 				
 					item.setId(resultSet.getInt("id"));
 					item.setName(resultSet.getString("name"));
-					item.setPrice(resultSet.getInt("price"));
+					item.setPrice(resultSet.getDouble("price"));
 					item.setTotalNumber(resultSet.getInt("total_number"));
 					
 					items.add(item);
@@ -90,13 +90,13 @@ public class ItemUtilService {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, id);
 			
-			ResultSet resultSet = statement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery();
 			
 			Item item = new Item();
 			if (resultSet.next()) {
 					item.setId(resultSet.getInt("id"));
 					item.setName(resultSet.getString("name"));
-					item.setPrice(resultSet.getInt("price"));
+					item.setPrice(resultSet.getDouble("price"));
 					item.setTotalNumber(resultSet.getInt("total_number"));
 			}
 			
