@@ -1,7 +1,7 @@
-                  create 2 JSP FILR and on file do
+create 2 JSP FILR and on file do
 * in first file create form with input and method type post
-fullName input text , 
-password input text , 
+fullName input text ,
+password input text ,
 age  input text , 
 address radio button with values (cairo, alex , menofia),
 address select input with values (cairo, alex , menofia)

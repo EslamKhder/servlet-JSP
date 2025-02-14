@@ -7,7 +7,8 @@ CREATE TABLE item_details (
 	CONSTRAINT fk_item_id FOREIGN KEY (item_id) REFERENCES ITEM(id)
 );
 
-
+create java class on model that contain all column table of item_details
+-----------------------------------------------------------------------------------
 
 INSERT INTO item_details (model, type_model, description, item_id) VALUES ('2000', 'type_test', 'bla bla bla', 26);
 

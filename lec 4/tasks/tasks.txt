@@ -1,0 +1,6 @@
+* add new button on show items page to add item details
+* bug when delete item get error you must delete first item details if       	exist then delete item
+* show button  add item details based on if you have row ore not
+* add new button update item details
+---------------------------------------------------------------------
+apply cookies and session with login page  and logout
