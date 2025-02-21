@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>ADD Item</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="css/add-item.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+  <div class="text">
+    Add Item
+  </div>
+  <form action="ItemController">
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" required name="itemName">
+        <div class="underline"></div>
+        <label>Name</label>
+      </div>
+      <div class="input-data">
+        <input type="text" required  name="itemPrice">
+        <div class="underline"></div>
+        <label>PRICE</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" required name="itemtotalNumber">
+        <div class="underline"></div>
+        <label>TOTAL_NUMBER</label>
+      </div>
+ 	<input type="hidden" required name="action" value="add-item">
+    </div>
+    <input type="submit" value="Add" class="button">
+  </form>
+
+  <p class="back">
+    <a href="" >Back To Items</a>
+  </p>
+</div>
+<!-- partial -->
+
+</body>
+</html>
