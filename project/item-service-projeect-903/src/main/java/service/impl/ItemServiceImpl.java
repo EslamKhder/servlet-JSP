@@ -24,7 +24,7 @@ public class ItemServiceImpl implements  ItemService {
 		List<Item> categories = new ArrayList();
 		try {
 			Connection connection = dataSource.getConnection();
-			String query = "SELECT * FROM CATEGORY";
+			String query = "SELECT * FROM ITEM";
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
@@ -47,25 +47,81 @@ public class ItemServiceImpl implements  ItemService {
 
 	@Override
 	public Item getItemById(int id) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = dataSource.getConnection();
+			String query = "SELECT * FROM ITEM where id = " + id;
+			
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(query); // empty     item
+			
+			
+			if(resultSet.next()) {
+				return new Item(
+						resultSet.getInt("ID"),
+						resultSet.getString("NAME"),
+						resultSet.getDouble("TOTAL_NUMBER"),
+						resultSet.getInt("PRICE")
+						
+				);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return null;
 	}
 
 	@Override
 	public boolean addItem(Item item) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = dataSource.getConnection();
+			String query = "INSERT INTO ITEM (NAME,PRICE,TOTAL_NUMBER) VALUES ('" + item.getName()+ "'," + item.getPrice() + "," + item.getTotalNumber() + ")";
+			
+			Statement statement = connection.createStatement();
+			statement.executeQuery(query); // empty     item
+			
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean updateItemById(Item item) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = dataSource.getConnection();
+			String query = "UPDATE ITEM SET NAME = '" 
+	                + item.getName() + "', PRICE = " 
+	                + item.getPrice() + ", TOTAL_NUMBER = " 
+	                + item.getTotalNumber() + " WHERE ID = " + item.getId();
+			
+			Statement statement = connection.createStatement();
+			statement.executeQuery(query); // empty     item
+			
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean removeItemById(int id) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = dataSource.getConnection();
+			String query = "delete FROM ITEM where id = " + id;
+			
+			Statement statement = connection.createStatement();
+			statement.executeQuery(query); 
+			
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return false;
 	}
 

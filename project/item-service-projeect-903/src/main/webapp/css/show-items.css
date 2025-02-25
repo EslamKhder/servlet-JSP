@@ -158,3 +158,54 @@ a {
     width: 52%;
     color: #9f01ea !important;
 }
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+form {
+    display: inline-block;
+    margin: 0;
+}
+
+form input[type="submit"] {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: darkred;
+}
+
+button.f {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: green;
+    border: none;
+}
+
+button.f a {
+    color: white;
+    text-decoration: none;
+}
+

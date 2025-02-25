@@ -1,0 +1,11 @@
+<Context>
+
+  <Resource name="jdbc/item"
+            type="javax.sql.DataSource"
+            username="hr"
+            password="hr"
+            driverClassName="oracle.jdbc.OracleDriver"
+            url="jdbc:oracle:thin:@//localhost:1521/orclpdb"
+            />
+
+</Context>

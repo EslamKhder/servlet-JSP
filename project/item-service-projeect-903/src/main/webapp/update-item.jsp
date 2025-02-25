@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -11,30 +13,31 @@
 <!-- partial:index.partial.html -->
 <div class="container">
   <div class="text">
-    Add Item
+    Update Item
   </div>
   <form action="ItemController" method="post">
+  <input type="hidden" required  name="itemId" value="${itemSelected.id}">
     <div class="form-row">
       <div class="input-data">
-        <input type="text" required name="itemName">
+        <input type="text" required name="itemName" value="${itemSelected.name}">
         <div class="underline"></div>
         <label>Name</label>
       </div>
       <div class="input-data">
-        <input type="text" required name="itemPrice">
+        <input type="text" required name="itemPrice" value="${itemSelected.price}">
         <div class="underline"></div>
         <label>PRICE</label>
       </div>
     </div>
     <div class="form-row">
       <div class="input-data">
-        <input type="text" required  name="itemTotalNumber">
+        <input type="text" required  name="itemTotalNumber" value="${itemSelected.totalNumber}">
         <div class="underline"></div>
         <label>TOTAL_NUMBER</label>
       </div>
     </div>
-    <input type="hidden" required  name="action" value="addItem">
-    <input type="submit" value="add" class="button">
+    <input type="hidden" required  name="action" value="updateItem">
+    <input type="submit" value="Update" class="button">
   </form>
 
   <p class="back">
