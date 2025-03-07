@@ -1,0 +1,61 @@
+* pls refactor code on ItemController to prevent dublication
+* pls prevent sql injection base on using prepareStatement
+* diff between RequestDispatcher  forward and redirect
+* finalize project as CRUD Operation and make sure test application
+14/3/2025
+------------------------------------------------------------------------------
+project tasks
+create new table with name Item_details 
+every row on item has only one row on Item_details    (one to one)
+pls add constrain  unique
+columns  (id, desc ,issue_date, expiry_data)
+pls attach sql file.
+
+modify page load-items.jsp  add new colums  (desc ,issue_date, expiry_data)
+note: pls use join
+
+21/3/2025
+-----------------------------------------------------------------------------
+add new button   add_item_details
+note  
+if  row on table item  has row on table item_details button must be hidden
+if  row on table item  not has row on table item_details button must be not hidden
+
+add new button   delete_item_details
+
+if  row on table item  has row on table item_details button must be not hidden
+if  row on table item  not has row on table item_details button must be hidden
+
+impact 
+pls handle button delete to remove row on item_details then remove on item
+
+28/3/2025
+button update   must include all inputs item and item_details  and update all 
+-------------------------------------------------------------------------------------
+pls create new page for login and signup
+
+pls create table with name USERS (id, name, email, password)
+pls add constrain  unique email
+
+pls create model for user 
+pls create service and service impl
+pls create new controller to handle login and create account
+
+if user login success pls move user to main page
+if user login failed pls redirect on login page with validation message invalid username and password
+
+if user signup success pls move user to main page or login
+if user signup failed pls redirect on signup page with validation message .............
+
+04/3/2025
+----------------------------------------------------------------------------------------------------
+apply session and cookies
+
+pls  add button logout    must be visible when user is login
+action move user to login page   and  (set session att with false or remove session att)and remove cookies
+
+11/04/2025
+
+-----------------------------------------------------------------------------------------------------
+
+
