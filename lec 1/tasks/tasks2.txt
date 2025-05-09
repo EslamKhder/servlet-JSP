@@ -1,4 +1,4 @@
-create 2 JSP FILR and on file do
+create 2 JSP FILE and on file do
 * in first file create form with input and method type post
 fullName input text ,
 password input text ,

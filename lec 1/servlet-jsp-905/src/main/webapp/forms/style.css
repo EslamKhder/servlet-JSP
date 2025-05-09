@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 30px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.student-form {
+    background-color: #fff;
+    padding: 25px;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.student-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.student-form input[type="text"],
+.student-form input[type="number"],
+.student-form input[type="password"],
+.student-form input[type="date"],
+.student-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.student-form input[type="radio"],
+.student-form input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.student-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.student-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
