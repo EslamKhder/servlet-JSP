@@ -1,6 +1,6 @@
 <Context>
 
-  <Resource name="jdbc/web_item"
+  <Resource name="jdbc/connection"
             type="javax.sql.DataSource"
             username="hr"
             password="hr"
