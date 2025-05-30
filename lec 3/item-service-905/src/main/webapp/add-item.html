@@ -13,25 +13,27 @@
   <div class="text">
     Add Item
   </div>
-  <form action="#">
+  <form action="/item-service-905/ItemController">
     <div class="form-row">
       <div class="input-data">
-        <input type="text" required>
+        <input type="text" required name="itemName">
         <div class="underline"></div>
         <label>Name</label>
       </div>
       <div class="input-data">
-        <input type="text" required>
+        <input type="text" required name="itemPrice">
         <div class="underline"></div>
         <label>PRICE</label>
       </div>
     </div>
     <div class="form-row">
       <div class="input-data">
-        <input type="text" required>
+        <input type="text" required name="itemTotalNumber">
         <div class="underline"></div>
         <label>TOTAL_NUMBER</label>
       </div>
+      
+      <input type="hidden" required name="action" value="add-item">
 
     </div>
     <input type="submit" value="Add" class="button">

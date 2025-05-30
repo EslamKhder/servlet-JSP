@@ -1,6 +1,12 @@
 package com.item.service.impl;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.sql.DataSource;
 
@@ -17,13 +23,46 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	public boolean saveItem(Item item) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = dataSource.getConnection();
+			
+			String query = "INSERT INTO item (NAME,PRICE,TOTAL_NUMBER)"
+						+ " VALUES ('" + item.getName() + "', " 
+					    + item.getPrice() +", " + item.getTotalNumber() + ")";
+			Statement statement = connection.createStatement();
+			int res = statement.executeUpdate(query);
+			
+			System.out.println(res);
+			if(res == 1) {
+				return true;
+			}
+			
+			return false;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return false;
 	}
 
 	@Override
 	public boolean removeItem(int id) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection =  dataSource.getConnection();
+			String query = "DELETE FROM item where id = " + id;
+			Statement statement = connection.createStatement();
+			int res = 0;
+			if (Objects.nonNull(loadItem(id))) {// nonNull   null
+				res = statement.executeUpdate(query);
+			}
+			
+			if(res == 1) {
+				return true;
+			}
+			
+			return false;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return false;
 	}
 
@@ -35,13 +74,53 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Item loadItem(int id) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection =  dataSource.getConnection();
+			String query = "SELECT * FROM item where id = " + id;
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			
+			if (resultSet.next()) {
+				return new Item(
+						resultSet.getInt("id"),
+						resultSet.getString("Name"),
+						resultSet.getDouble("price"),
+						resultSet.getInt("total_number")
+				);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return null;
 	}
 
 	@Override
 	public List<Item> loadItems() {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection =  dataSource.getConnection();
+			String query = "SELECT * FROM item order by id";
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			List<Item> items = new ArrayList<Item>();
+			
+			while (resultSet.next()) {
+				Item item = new Item(
+						resultSet.getInt("id"),
+						resultSet.getString("Name"),
+						resultSet.getDouble("price"),
+						resultSet.getInt("total_number")
+				);
+				items.add(item);
+			}
+			
+			return items;
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return null;
 	}
 
