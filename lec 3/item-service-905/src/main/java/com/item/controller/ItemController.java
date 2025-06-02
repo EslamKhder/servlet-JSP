@@ -31,6 +31,19 @@ public class ItemController extends HttpServlet {
 	@Resource(name = "jdbc/item")
 	private DataSource dataSource;
 
+	private ItemService itemService;
+
+	// public    private  protected  default
+	public ItemController(){
+		
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		itemService = new ItemServiceImpl(dataSource);
+	}
+
+	
 	// action = {add-item, update-item, remove-item, load-item, load-items}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
@@ -62,15 +75,18 @@ public class ItemController extends HttpServlet {
 	
 	
 	private void updateItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		ItemService itemService = new ItemServiceImpl(dataSource);
-		Boolean updatedItem = itemService.updateItem(new Item());
+		Item item = extraxtItem(request);
+		Boolean updatedItem = itemService.updateItem(item);
+		
+		if(updatedItem) {
+			loadItems(request, response);
+		}
 	}
 
 
 	private void loadItems(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		ItemService itemService = new ItemServiceImpl(dataSource);
+		
 		List<Item> items =  itemService.loadItems();
 		
 		request.setAttribute("itemsData", items);
@@ -83,7 +99,6 @@ public class ItemController extends HttpServlet {
 
 	private void loadItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		ItemService itemService = new ItemServiceImpl(dataSource);
 		int id = Integer.parseInt(request.getParameter("id"));
 		Item item = itemService.loadItem(id);
 		request.setAttribute("itemData", item);
@@ -94,28 +109,18 @@ public class ItemController extends HttpServlet {
 		}
 	}
 	
-	
 	private void removeItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		ItemService itemService = new ItemServiceImpl(dataSource);
 		int id = Integer.parseInt(request.getParameter("id"));
 		System.out.println("==> " + id);
 		Boolean removedItem = itemService.removeItem(id);
 		if (removedItem) {
 			loadItems(request, response);
 		}
-		
 	}
 	
-	
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		ItemService itemService = new ItemServiceImpl(dataSource);
-		String itemName = request.getParameter("itemName");
-		double itemPrice = Double.parseDouble(request.getParameter("itemPrice"));
-		int itemTotalNumber = Integer.parseInt(request.getParameter("itemTotalNumber"));
-		
-		Item item = new Item(itemName, itemPrice, itemTotalNumber);
+		Item item = extraxtItem(request);
 		Boolean addedItem = itemService.saveItem(item);
 		System.out.println("====> " + addedItem);
 		if (addedItem) {
@@ -123,4 +128,18 @@ public class ItemController extends HttpServlet {
 		}
 	}
 
+	private Item extraxtItem(HttpServletRequest request){
+		String itemName = request.getParameter("itemName");
+		double itemPrice = Double.parseDouble(request.getParameter("itemPrice"));
+		int itemTotalNumber = Integer.parseInt(request.getParameter("itemTotalNumber"));
+		
+		Item item = new Item(itemName, itemPrice, itemTotalNumber);
+		
+		String idParam = request.getParameter("itemId");
+		if (Objects.nonNull(idParam)) {
+			item.setId(Integer.parseInt(idParam));
+		}
+		
+		return item;
+	}
 }

@@ -1,0 +1,11 @@
+✅ Task 1: Create User table with id, username, password
+✅ Task 2: create new page for login front-end
+✅ Task 3: Create new page for signup front-end
+✅ Task 4: if user access any page (this page must be login to display) and user not login pls redirect to login page  apply session
+✅ Task 5: if user access any page (this page must be not login to display) and user login pls redirect to load-items  apply session
+✅ Task 6: apply create user to save on DB (signup) validate username size > 5 and not exist before on DB , password must be contain 
+UPPER, LOWER , NUMBER, SPECIAL CHAR ($#@%&) and size must be greater than 7
+
+pls apply clean code 
+pls apply new controller , service, serviceImpl and model
+--------------------------------------------------------------------------------------------

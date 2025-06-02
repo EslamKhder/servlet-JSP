@@ -1,0 +1,12 @@
+✅ Task 1: Create Item_Details Table with Columns (id, desc, item_id)
+✅ Task 2: Define One-to-One Relationship Between Item and Item_Details
+✅ Task 3: Create Model Class ItemDetails
+✅ Task 4: Add Action to Insert Item Details Only If Item Has No Existing Details
+✅ Task 5: Add New Action to Redirect to add-item-details.jsp Page
+✅ Task 6: Handle add-item-details.jsp Form to Save Row in Item_Details Table
+✅ Task 7: Add New Action to Show Item Details and Redirect to show-item-details.jsp
+✅ Task 8: Handle show-item-details.jsp to Display Selected Item Details
+
+pls apply clean code
+apply new controller, model service and serviceImpl to add-item-details
+--------------------------------------------------------------------------------------------

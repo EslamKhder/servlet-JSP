@@ -21,6 +21,7 @@ public class ItemServiceImpl implements ItemService {
 		this.dataSource = dataSource;
 	}
 	
+	//preStat
 	@Override
 	public boolean saveItem(Item item) {
 		try {
@@ -33,11 +34,8 @@ public class ItemServiceImpl implements ItemService {
 			int res = statement.executeUpdate(query);
 			
 			System.out.println(res);
-			if(res == 1) {
-				return true;
-			}
-			
-			return false;
+
+			return res == 1;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -68,9 +66,25 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public boolean updateItem(Item item) {
-		// TODO Auto-generated method stub
-		return false;
+	    try {
+	        Connection connection = dataSource.getConnection();
+
+	        String query = "UPDATE item SET NAME = '" + item.getName() + "', " +
+	                       "PRICE = " + item.getPrice() + ", " +
+	                       "TOTAL_NUMBER = " + item.getTotalNumber() +
+	                       " WHERE ID = " + item.getId(); 
+	        Statement statement = connection.createStatement();
+	        int res = statement.executeUpdate(query);
+	        
+	        return res == 1;
+
+	    } catch (SQLException e) {
+	        System.out.println("SQL Error: " + e.getMessage());
+	    }
+
+	    return false;
 	}
+
 
 	@Override
 	public Item loadItem(int id) {
@@ -123,5 +137,6 @@ public class ItemServiceImpl implements ItemService {
 		}
 		return null;
 	}
+
 
 }
