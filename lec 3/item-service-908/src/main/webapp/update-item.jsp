@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Form</title>
+  <style>
+    :root {
+      --bg: #0f172a;         /* slate-900 */
+      --card: #111827;       /* gray-900 */
+      --text: #e5e7eb;       /* gray-200 */
+      --muted: #9ca3af;      /* gray-400 */
+      --accent: #3b82f6;     /* blue-500 */
+      --accent-2: #2563eb;   /* blue-600 */
+      --ring: rgba(59,130,246,.45);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 100% -10%, #1f2937 0%, var(--bg) 60%);
+      color: var(--text);
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter: blur(6px);
+      padding: 24px;
+    }
+
+    .card h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: 0.2px;
+    }
+    .card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #0b1220;
+      color: var(--text);
+      outline: none;
+      transition: box-shadow .15s ease, border-color .15s ease, transform .02s ease;
+    }
+
+    input::placeholder { color: #6b7280; }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding-top: 8px;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      transition: transform .03s ease, background .15s ease, box-shadow .15s ease;
+      box-shadow: 0 8px 24px rgba(59,130,246,.35);
+    }
+
+    button:hover { background: var(--accent-2); }
+    button:active { transform: translateY(1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: none;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-labelledby="form-title">
+    <h1 id="form-title">update Item</h1>
+    <p>Fill the fields below and submit.</p>
+
+    <form action="/item-service-908/ItemController" method="post" novalidate>
+      <div class="grid">
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" minlength="2" maxlength="100" placeholder="Product name" required value="${item.name}"/>
+        </div>
+
+        <div class="field">
+          <label for="price">Price</label>
+          <input id="price" name="price" type="number" step="0.01" min="0" placeholder="e.g., 49.99" required value="${item.price}"/>
+          <div class="hint">Use decimals if needed</div>
+        </div>
+
+        <div class="field">
+          <label for="totalNumber">Total Number</label>
+          <input id="totalNumber" name="totalNumber" type="number" min="0" step="1" placeholder="e.g., 5" required value="${item.totalNumber}"/>
+        </div>
+      </div>
+
+<input type="hidden" name="id" value="${item.id}"/>
+<input type="hidden" name="action" value="editItem"/>
+
+      <div class="actions">
+        <button type="reset" class="btn-secondary">Clear</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

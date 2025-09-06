@@ -31,6 +31,8 @@ public class ItemController extends HttpServlet {
 	private DataSource dataSource;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// check if user login or not
+		
 		String action = request.getParameter("action");
 		
 		if (Objects.isNull(action)) {
@@ -53,7 +55,7 @@ public class ItemController extends HttpServlet {
 				deleteItem(request, response);
 				break;
 			default: 
-				action = "getItems";
+				getItems(request, response);
 		}
 	}
 
@@ -79,6 +81,7 @@ public class ItemController extends HttpServlet {
 		Item item = new Item(id, name, price, totalNumber);
 		ItemService itemService = new ItemServiceImpl(dataSource);
 		boolean isItemUpdated = itemService.editItem(item);
+		getItems(request, response);
 	}
 
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
@@ -88,12 +91,23 @@ public class ItemController extends HttpServlet {
 		Item item = new Item(name, price, totalNumber);
 		ItemService itemService = new ItemServiceImpl(dataSource);
 		boolean isItemSaved  = itemService.addItem(item);
+		getItems(request, response);
+		
 	}
 
 	private void getItem(HttpServletRequest request, HttpServletResponse response) {
 		Long id  = Long.parseLong(request.getParameter("id"));
 		ItemService itemService = new ItemServiceImpl(dataSource);
-		Item items = itemService.loadItem(id);
+		Item item = itemService.loadItem(id);
+		
+		request.setAttribute("item", item);
+		
+		try {
+			request.getRequestDispatcher("/update-item.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

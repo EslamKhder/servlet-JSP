@@ -114,7 +114,7 @@
             <td><%=item.getPrice() %></td>
             <td><%=item.getTotalNumber() %></td>
             <td>
-                <a href="/item-service-908/ItemController?action=getItem&id=<%=item.getId() %>">Update</a>
+                <a href="/item-service-908/ItemController?action=getItem&id=<%=item.getId() %>">Update</a> 
                 <a href="/item-service-908/ItemController?action=deleteItem&id=<%=item.getId() %>">Delete</a>
             </td>
         </tr>
@@ -122,7 +122,7 @@
         </tbody>
     </table>
 
-    <button class="f"><a href="">Add Item</a></button>
+    <button class="f"><a href="add-item.html">Add Item</a></button>
 </div>
 </body>
 </html>
