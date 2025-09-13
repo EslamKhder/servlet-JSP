@@ -1,17 +1,22 @@
 pls search about sql injection and catch where on project then give me solution
 on item controller pls remove duplicated code give me solution
 ---------------------------------------------------------------------
-login page apply cookies and session with and logout
-create file for login (front-end) go to items
-create file for signup (front-end) 
-TODO i need to apply signup feature
-TODO i need to apply login feature
+* login page apply cookies and session with and logout
+
+create file for login (front-end) 
+create file for signup (front-end)  
+TODO i need to apply signup feature go to items
+TODO i need to apply login feature  go to items
 --------------------------------------------------------------------------------------------------
 apply session for login and signup
-
+apply cookies for login and signup
 
 -----------------------------------------------------------
 * add new button on show items page to add item details
 * show button  add item details based on if you have row ore not
 * bug when delete item get error you must delete first item details if       	exist then delete item
 * add new button update item details
+-----------------------------------------------------------------------
+forget password
+delete account
+-------------------------------------------------------------------------------------------------------------
