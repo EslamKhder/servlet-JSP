@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<!-- <form action="showStudentData.jsp" class="student-form" method="post"> -->
+<form action="/servlet-jsp-907/ItemServlet" class="student-form" method="post">
+    <label>ID:</label>
+    <input type="number" name="id" value=""><br><br>
+
+    <label>Name:</label>
+    <input type="text" name="name"><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password"><br><br>
+
+    <label>Address:</label>
+    <input type="text" name="address"><br><br>
+
+    <label>Age:</label>
+    <input type="number" name="age" ><br><br>
+
+    <p>Please select your favorite Web language:</p>
+    <input type="radio" name="fav_language" value="H"> HTML<br>
+    <input type="radio" name="fav_language" value="C"> CSS<br>
+    <input type="radio" name="fav_language" value="JS"> JavaScript<br><br>
+    
+    
+    <label>Cars:</label>
+    <select name="cars" >
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+    </select><br><br>
+    
+    
+
+    <label>Vehicles:</label><br>
+    <input type="checkbox" name="vehicle" value="Bike"> Bike<br>
+    <input type="checkbox" name="vehicle" value="Car"> Car<br>
+    <input type="checkbox" name="vehicle" value="Boat"> Boat<br><br>
+
+    <label for="date">Select a date:</label>
+    <input type="date" id="date" name="date"><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
