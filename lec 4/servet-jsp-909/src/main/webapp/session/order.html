@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f6f9;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    form {
+        background: #ffffff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        width: 320px;
+        text-align: center;
+    }
+
+    form label {
+        font-size: 16px;
+        color: #333;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        outline: none;
+    }
+
+    input[type="text"]:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: #ffffff;
+        border: none;
+        padding: 10px 18px;
+        font-size: 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #43a047;
+    }
+</style>
+
+</head>
+<body>
+	<form action="showOrders.jsp">
+	    <label>Pls write order:</label>
+	    <input type="text" name="order" placeholder="Enter your order">
+	    <input type="submit" value="Submit">
+	</form>
+</body>
+</html>
