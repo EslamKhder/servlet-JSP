@@ -1,4 +1,11 @@
-/* Base styles */
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>ADD Item</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <style type="text/css">
+  /* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -356,3 +363,46 @@ form {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+  </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+  <div class="text">
+    Add Item
+  </div>
+  <form action="/item-service-909/ItemController">
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" required name="name">
+        <div class="underline"></div>
+        <label>Name</label>
+      </div>
+      <div class="input-data">
+        <input type="text" required name="price">
+        <div class="underline"></div>
+        <label>PRICE</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" required name="totalNumber">
+        <div class="underline"></div>
+        <label>TOTAL_NUMBER</label>
+      </div>
+
+    </div>
+    
+    <input type="hidden" required name="action" value="add-item">
+    <input type="submit" value="Add" class="button">
+  </form>
+
+  <p class="back">
+    <a href="" >Back To Items</a>
+  </p>
+</div>
+<!-- partial -->
+
+</body>
+</html>
