@@ -1,4 +1,14 @@
-/* Reset and base styles */
+<%@page import="com.item.model.Item"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Items</title>
+    <style>/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -251,4 +261,48 @@ tbody tr:nth-child(n+4) { animation-delay: 0.4s; }
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(45deg, #667eea, #764ba2);
     border-radius: 10px;
-}
+}</style>
+</head>
+<body>
+<div class="layer">
+    <table>
+        <h1>Items</h1>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>TOTAL_NUMBER</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+			List<Item> items = (List<Item>)request.getAttribute("allItems");     
+        	
+        for(Item item : items){
+        %>
+        <tr>
+            <td><strong><%= item.getId()%></strong></td>
+            <td><%= item.getName()%></td>
+            <td><%= item.getPrice()%></td>
+            <td><%= item.getTotalNumber()%></td>
+            <td>
+                <a>Update</a>
+                <a href="/item-service-910/ItemContoller?action=delete-item&id=<%= item.getId()%>">Delete</a>
+            </td>
+        </tr>
+        <%
+        }
+        %>
+        </tbody>
+    </table>
+
+
+    <button class="f"><a href="" >Add Item</a></button>
+
+
+</div>
+
+</body>
+</html>

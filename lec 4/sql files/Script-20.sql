@@ -8,5 +8,14 @@ CREATE TABLE item (
 );
 
 SELECT * FROM item;
-INSERT INTO item (name, price) VALUES ('item1', 50);
 
+INSERT INTO item (name, price, total_number) VALUES ('Laptop', 15000, 10);
+INSERT INTO item (name, price, total_number) VALUES ('Smartphone', 8000, 25);
+INSERT INTO item (name, price, total_number) VALUES ('Headphones', 500, 50);
+INSERT INTO item (name, price, total_number) VALUES ('Keyboard', 300, 40);
+INSERT INTO item (name, price, total_number) VALUES ('Mouse', 150, 60);
+INSERT INTO item (name, price, total_number) VALUES ('Monitor', 2500, 15);
+INSERT INTO item (name, price, total_number) VALUES ('Printer', 2000, 8);
+INSERT INTO item (name, price, total_number) VALUES ('Tablet', 6000, 12);
+INSERT INTO item (name, price, total_number) VALUES ('USB Flash Drive', 100, 100);
+INSERT INTO item (name, price, total_number) VALUES ('External Hard Drive', 1200, 20);
