@@ -1,5 +1,9 @@
 pls search about sql injection and catch where on project then give me solution
+--------------------------------------------------------------------------------------
 on item controller pls remove duplicated code give me solution
+on item service impl pls remove duplicated code give me solution
+on any feature if fail pls create page and redirect to this page
+pls if not items found pls show label with no item found
 ---------------------------------------------------------------------
 * login page apply cookies and session with and logout
 
@@ -12,11 +16,15 @@ apply session for login and signup
 apply cookies for login and signup
 
 -----------------------------------------------------------
+create new table item_details one to one with item
+-------------------------------------------------
 * add new button on show items page to add item details
-* show button  add item details based on if you have row ore not
+* show button  add item details based on if you have row or not
 * bug when delete item get error you must delete first item details if       	exist then delete item
 * add new button update item details
 -----------------------------------------------------------------------
 forget password
-delete account
+
 -------------------------------------------------------------------------------------------------------------
+
+TODO BECOME (delete account)
