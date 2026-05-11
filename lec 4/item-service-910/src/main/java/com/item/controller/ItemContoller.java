@@ -25,6 +25,8 @@ import com.item.service.impl.ItemServiceImpl;
 //http://localhost:8080/item-service-910/ItemController?action=xyz
 //http://localhost:8080/item-service-910/ItemController
 
+
+// http://localhost:8080/item-service-910/ItemContoller?itemName=www&itemPrice=1&itemTotalNumber=1&action=add-item
 @WebServlet("/ItemContoller")
 public class ItemContoller extends HttpServlet {
 
@@ -72,19 +74,63 @@ public class ItemContoller extends HttpServlet {
 	
 	private void showItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		Long id = Long.parseLong(request.getParameter("id"));
+		ItemService itemService = new ItemServiceImpl(dataSource);
+		Item item = itemService.selectItem(id);
+		
+		if (Objects.nonNull(item)) {
+			request.setAttribute("itemSelected", item);
+			
+			try {
+				request.getRequestDispatcher("/update-item.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				System.out.println("Exception " + e.getMessage());
+			}
+		} else {
+			try {
+				request.getRequestDispatcher("/item-not-found.html").forward(request, response);
+			} catch (ServletException | IOException e) {
+				System.out.println("Exception " + e.getMessage());
+			}
+		}
 		
 	}
 
 
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		
+		String itemName  = request.getParameter("itemName");
+		double itemPrice = Double.parseDouble(request.getParameter("itemPrice")); // "50.2"
+		int itemTotalNumber = Integer.parseInt(request.getParameter("itemTotalNumber"));
+		
+		ItemService itemService = new ItemServiceImpl(dataSource);
+		
+		Item item = new Item(itemName, itemPrice, itemTotalNumber);
+		boolean isItemAdded = itemService.addItem(item);
+		
+		if (isItemAdded) {
+			showItems(request, response);
+		}
 		
 	}
 
 
 	private void updateItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		Long id = Long.parseLong(request.getParameter("id"));
+		String itemName  = request.getParameter("itemName");
+		double itemPrice = Double.parseDouble(request.getParameter("itemPrice")); // "50.2"
+		int itemTotalNumber = Integer.parseInt(request.getParameter("itemTotalNumber"));
 		
+		Item item = new Item(id, itemName, itemPrice, itemTotalNumber);
+		
+		ItemService itemService = new ItemServiceImpl(dataSource);
+		
+		boolean isItemUpdated = itemService.updateItem(item);
+		
+		if (isItemUpdated) {
+			showItems(request, response);
+		}
 	}
 
 
@@ -101,6 +147,7 @@ public class ItemContoller extends HttpServlet {
 
 
 	private void showItems(HttpServletRequest request, HttpServletResponse response) {
+		
 		ItemService itemService = new ItemServiceImpl(dataSource);
 		List<Item> items =  itemService.getAllItems();
 		request.setAttribute("allItems", items);

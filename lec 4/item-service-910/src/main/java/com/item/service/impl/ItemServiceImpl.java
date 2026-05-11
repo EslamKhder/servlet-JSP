@@ -65,19 +65,107 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Item selectItem(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		Statement statement = null;
+		Item item = null;
+		try {
+			connection = dataSource.getConnection();
+		    statement = connection.createStatement();
+			String query = "select * from item where id = " + id;
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			
+			if (resultSet.next()) {
+			    item = new Item(
+						resultSet.getLong("ID"),
+						resultSet.getString("NAME"),
+						resultSet.getDouble("PRICE"),
+						resultSet.getInt("TOTAL_NUMBER")
+				);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Excetion " + e.getMessage());
+		} finally {
+			try {
+				if (Objects.nonNull(connection)) {
+					connection.close();
+				}
+				if (Objects.nonNull(statement)) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println("Excetion " + e.getMessage());
+			}
+			
+		}
+		return item;
 	}
 
 	@Override
 	public boolean addItem(Item item) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
+		Statement statement = null;
+		
+		try {
+			connection = dataSource.getConnection();  // connection open
+			statement = connection.createStatement(); // statement open
+			
+			String query = "INSERT INTO HR.ITEM (NAME, PRICE, TOTAL_NUMBER) VALUES('" + 
+								item.getName() + "', " + item.getPrice() +", " + item.getTotalNumber() + ")";
+			
+			statement.execute(query);
+			
+			return true;
+		} catch (Exception exception) {
+			System.out.println("ex => " + exception.getMessage());
+		} finally {
+			try {
+				if(Objects.nonNull(connection)) {
+					connection.close();
+				}
+				
+				if(Objects.nonNull(statement)) {
+					statement.close();
+				}
+			} catch (SQLException exception) {
+				System.out.println("ex => " + exception.getMessage());
+			}
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean updateItem(Item item) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
+		Statement statement = null;
+		
+		try {
+			connection = dataSource.getConnection();  // connection open
+			statement = connection.createStatement(); // statement open
+			
+			String query = "UPDATE HR.ITEM SET NAME='" + item.getName() + "', PRICE=" + item.getPrice() + ", TOTAL_NUMBER = " + item.getTotalNumber() + " WHERE ID=" + item.getId();
+			
+			statement.execute(query);
+			
+			return true;
+		} catch (Exception exception) {
+			System.out.println("ex => " + exception.getMessage());
+		} finally {
+			try {
+				if(Objects.nonNull(connection)) {
+					connection.close();
+				}
+				
+				if(Objects.nonNull(statement)) {
+					statement.close();
+				}
+			} catch (SQLException exception) {
+				System.out.println("ex => " + exception.getMessage());
+			}
+		}
+		
 		return false;
 	}
 

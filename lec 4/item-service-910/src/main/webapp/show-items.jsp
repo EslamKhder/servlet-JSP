@@ -288,7 +288,7 @@ tbody tr:nth-child(n+4) { animation-delay: 0.4s; }
             <td><%= item.getPrice()%></td>
             <td><%= item.getTotalNumber()%></td>
             <td>
-                <a>Update</a>
+                <a href="/item-service-910/ItemContoller?action=show-item&id=<%= item.getId()%>">Update</a>
                 <a href="/item-service-910/ItemContoller?action=delete-item&id=<%= item.getId()%>">Delete</a>
             </td>
         </tr>
@@ -299,7 +299,7 @@ tbody tr:nth-child(n+4) { animation-delay: 0.4s; }
     </table>
 
 
-    <button class="f"><a href="" >Add Item</a></button>
+    <button class="f"><a href="add-item.html" >Add Item</a></button>
 
 
 </div>
