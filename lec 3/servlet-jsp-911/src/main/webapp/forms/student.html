@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Form</title>
+
+<style>
+
+    body{
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        margin: 0;
+        padding: 40px;
+    }
+
+    .container{
+        width: 500px;
+        margin: auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    h1{
+        text-align: center;
+        color: #0077cc;
+        margin-bottom: 25px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    select{
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+
+    .radio-group,
+    .checkbox-group{
+        margin-top: 10px;
+    }
+
+    .radio-group input,
+    .checkbox-group input{
+        margin-right: 5px;
+    }
+
+    .radio-group label,
+    .checkbox-group label{
+        font-weight: normal;
+        margin-right: 15px;
+    }
+
+    input[type="submit"]{
+        margin-top: 25px;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background-color: #0077cc;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    input[type="submit"]:hover{
+        background-color: #005fa3;
+    }
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Registration Form</h1>
+
+<!--   http://localhost:8080/servlet-jsp-911/forms/show-student.jsp?id=1&name=ahmed&password=123&address=alex&age=9&fav_language=H&cars=volvo&vehicle=Bike&vehicle=Car&date=2026-05-07  -->
+  <!--  <form action="/servlet-jsp-911/forms/show-student.jsp" method="post">-->
+<form action="/servlet-jsp-911/Demo" method="post">
+        <label>ID:</label>
+        <input type="number" name="id"> 
+
+        <label for="userName">Name:</label>
+        <input id="userName" type="text" name="name">
+
+        <label>Password:</label>
+        <input type="password" name="password">
+
+        <label>Address:</label>
+        <input type="text" name="address">
+
+        <label>Age:</label>
+        <input type="number" name="age">
+
+        <label>Favorite Web Language:</label>
+        <div class="radio-group">
+            <input type="radio" name="fav_language" value="html"> HTML
+            <input type="radio" name="fav_language" value="CSS"> CSS
+            <input type="radio" name="fav_language" value="JavaScript"> JavaScript
+        </div>
+
+        <label>Cars:</label>
+        <select name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+
+        <label>Vehicles:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" name="vehicle" value="bike"> Bike
+            <input type="checkbox" name="vehicle" value="car"> Car
+            <input type="checkbox" name="vehicle" value="boat"> Boat
+        </div>
+
+        <label for="date">Select a date:</label>
+        <input type="date" id="date" name="date">
+
+        <input type="submit" value="done">
+
+    </form>
+
+</div>
+
+</body>
+</html>

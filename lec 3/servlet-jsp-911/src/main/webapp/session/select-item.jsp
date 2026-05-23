@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Objects"%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Order Form</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        background: white;
+        padding: 35px;
+        width: 400px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 25px;
+        color: #0f172a;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+        border-color: #2563eb;
+        outline: none;
+        box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background: #1d4ed8;
+    }
+
+    .books {
+        margin-top: 20px;
+        text-align: left;
+        color: #475569;
+    }
+
+    .books ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+</style>
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <h2>Book Order Form</h2>
+
+        <form action="select-item.jsp">
+            <input type="text" name="item" placeholder="Enter your book name">
+            <input type="submit" value="Add to My Items">
+        </form>
+        
+        <%
+
+    List<String> items = (List<String>) session.getAttribute("allItems");
+
+    // Create session list if not exists
+    if (Objects.isNull(items)) {
+        items = new ArrayList<>();
+        session.setAttribute("allItems", items);
+    }
+
+    // Get selected item from request
+    String selectedItem = request.getParameter("item");
+
+    if (items.contains(selectedItem)) {
+    	out.print("<div class='empty'> item already selected before </div");
+    	return;
+    }
+    // Add item if exists
+    if (Objects.nonNull(selectedItem) && !selectedItem.trim().isEmpty()) {
+        items.add(selectedItem);
+    }
+
+%>
+
+<h1>My Ordered Items</h1>
+
+<%
+
+    if (items.isEmpty()) {
+%>
+
+        <div class="empty">
+            No items found
+        </div>
+
+<%
+    } else {
+
+        for(String item : items){
+%>
+
+            <div class="item">
+                <%= item %>
+            </div>
+
+<%
+        }
+    }
+%>
+    </div>
+
+</body>
+</html>

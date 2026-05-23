@@ -1,0 +1,13 @@
+<Context>
+
+  <Resource name="jdbc/test"
+            type="javax.sql.DataSource"
+            
+            
+            username="hr"
+            password="hr"
+            url="jdbc:oracle:thin:@//localhost:1521/orclpdb"
+            driverClassName="oracle.jdbc.OracleDriver"
+            />
+            
+</Context>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Favorite Language</title>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .container{
+        background:white;
+        width:420px;
+        padding:35px;
+        border-radius:16px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.3);
+        text-align:center;
+    }
+
+    h1{
+        font-size:26px;
+        margin-bottom:25px;
+        color:#0f172a;
+    }
+
+    input[type="text"]{
+        width:100%;
+        padding:14px;
+        border:2px solid #cbd5e1;
+        border-radius:10px;
+        font-size:16px;
+        margin-bottom:20px;
+        transition:0.3s;
+    }
+
+    input[type="text"]:focus{
+        outline:none;
+        border-color:#2563eb;
+        box-shadow:0 0 8px rgba(37,99,235,0.4);
+    }
+
+    input[type="submit"]{
+        width:100%;
+        padding:14px;
+        border:none;
+        border-radius:10px;
+        background:#2563eb;
+        color:white;
+        font-size:16px;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    input[type="submit"]:hover{
+        background:#1d4ed8;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form action="success.jsp">
+
+            <h1>Please Select Favorite Language</h1>
+
+            <input 
+                type="text" 
+                name="language"
+                placeholder="Enter your favorite language"
+            >
+
+            <input 
+                type="submit" 
+                value="Done"
+            >
+
+        </form>
+
+    </div>
+
+</body>
+</html>
