@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 import com.item.model.Item;
 import com.item.service.ItemService;
@@ -24,6 +26,8 @@ import com.item.service.impl.ItemServiceImpl;
 @WebServlet("/ItemController")
 public class ItemController extends HttpServlet {
 
+	@Resource(name = "jdbc/item")
+	private DataSource dataSource;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
@@ -60,7 +64,15 @@ public class ItemController extends HttpServlet {
 	}
 
 	private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TODO get all items DONE
+		ItemService itemService = new ItemServiceImpl(dataSource);
+		Long id = Long.parseLong(request.getParameter("id"));
+		
+		boolean isItemDeleted = itemService.removeItemById(id);
+		
+		if (isItemDeleted) {
+			showItems(request, response);
+		}
 		
 	}
 
@@ -70,8 +82,19 @@ public class ItemController extends HttpServlet {
 	}
 
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TODO get all items DONE
+		ItemService itemService = new ItemServiceImpl(dataSource);
 		
+		String name = request.getParameter("name");
+		Double price = Double.parseDouble(request.getParameter("price"));
+		int totalNumber = Integer.parseInt(request.getParameter("totalNumber"));
+		Item item = new Item(name, price, totalNumber);
+		
+		boolean isItemAdded = itemService.addItem(item);
+		
+		if (isItemAdded) {
+			showItems(request, response);
+		}
 	}
 
 	private void showItem(HttpServletRequest request, HttpServletResponse response) {
@@ -80,11 +103,17 @@ public class ItemController extends HttpServlet {
 	}
 
 	private void showItems(HttpServletRequest request, HttpServletResponse response) {
-		// TODO get all items
-		ItemService itemService = new ItemServiceImpl();
+		// TODO get all items DONE
+		ItemService itemService = new ItemServiceImpl(dataSource);
 		List<Item> items = itemService.getItems();
 		
 		// TODO send items to view
+		request.setAttribute("itemsData", items);
 		
+		try {
+			request.getRequestDispatcher("showItems.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			System.out.println("Exc: " + e.getMessage());
+		}
 	}
 }
