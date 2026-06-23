@@ -311,7 +311,7 @@ tbody tr:nth-child(n+4) { animation-delay: 0.4s; }
             <td><%= item.getPrice() %></td>
             <td><%= item.getTotalNumber() %></td>
             <td>
-                <a>Update</a>
+                <a href="/item-service-911/ItemController?action=showItem&id=<%= item.getId() %>">Update</a>
                 <a href="/item-service-911/ItemController?action=deleteItem&id=<%= item.getId() %>">Delete</a>
             </td>
         </tr>

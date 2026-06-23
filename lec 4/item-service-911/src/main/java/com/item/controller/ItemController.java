@@ -77,8 +77,20 @@ public class ItemController extends HttpServlet {
 	}
 
 	private void updateItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TODO get all items DONE
+		ItemService itemService = new ItemServiceImpl(dataSource);
 		
+		Long id = Long.parseLong(request.getParameter("id"));
+		String name = request.getParameter("name");
+		Double price = Double.parseDouble(request.getParameter("price"));
+		int totalNumber = Integer.parseInt(request.getParameter("totalNumber"));
+		Item item = new Item(id, name, price, totalNumber);
+		
+		boolean isItemUpdated = itemService.updateItem(item);
+		
+		if (isItemUpdated) {
+			showItems(request, response);
+		}
 	}
 
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
@@ -98,7 +110,19 @@ public class ItemController extends HttpServlet {
 	}
 
 	private void showItem(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		ItemService itemService = new ItemServiceImpl(dataSource);
+		Long id = Long.parseLong(request.getParameter("id"));
+		
+		Item item = itemService.getItemById(id);
+		if (Objects.nonNull(item)) {
+			request.setAttribute("itemData", item);
+			try {
+				request.getRequestDispatcher("update-item.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				System.out.println("Exc: " + e.getMessage());
+			}
+		}
+		
 		
 	}
 

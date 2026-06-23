@@ -1,8 +1,11 @@
+<%@page import="com.item.model.Item"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>ADD Item</title>
+  <title>Update Item</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <style>/* Base styles */
 * {
@@ -362,36 +365,41 @@ form {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }</style>
-
 </head>
 <body>
 <!-- partial:index.partial.html -->
+<%
+	Item item = (Item)request.getAttribute("itemData");
+%>
 <div class="container">
   <div class="text">
-    Add Item
+    Update Item
   </div>
   <form action="/item-service-911/ItemController">
     <div class="form-row">
       <div class="input-data">
-        <input type="text" name="name">
+        <input type="text" name="name" required value="<%=item.getName()%>">
         <div class="underline"></div>
         <label>Name</label>
       </div>
+      
       <div class="input-data">
-        <input type="text" name="price">
+        <input type="text" required name="price" value="<%=item.getPrice() %>">
         <div class="underline"></div>
         <label>PRICE</label>
       </div>
+      
     </div>
     <div class="form-row">
       <div class="input-data">
-        <input type="text" name="totalNumber">
+        <input type="text" required name="totalNumber" value="<%=item.getTotalNumber() %>">
         <div class="underline"></div>
         <label>TOTAL_NUMBER</label>
       </div>
-<input hidden="true" type="text" name="action" value="addItem">
     </div>
-    <input type="submit" value="Add" class="button">
+    <input type="text" hidden="true" name="id" value="<%=item.getId() %>">
+    <input hidden="true" type="text" name="action" value="updateItem">
+    <input type="submit" value="Update" class="button">
   </form>
 
   <p class="back">
